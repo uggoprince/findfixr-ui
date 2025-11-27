@@ -1,0 +1,13 @@
+.superdesign/
+*.log
+.DS_Store
+node_modules/
+dist/
+.env*
+.vscode/
+.idea/
+*.swp
+.cursor/
+.windsurfrules
+CLAUDE.md
+.next/
