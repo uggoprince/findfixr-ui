@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import {
   Search, MapPin, Star, CheckCircle, ArrowRight,
-  Zap, Droplet, Car, Home, Menu, X
+  Zap, Droplet, Car, Home
 } from 'lucide-react';
 import { Header } from '@/components/shared/Header';
 
