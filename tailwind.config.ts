@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,9 +15,11 @@ export default {
           primary: '#2563eb',
           secondary: '#f97316',
         },
-        
+
         // Full Primary Scale
         primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
           50: '#eff6ff',
           100: '#dbeafe',
           200: '#bfdbfe',
@@ -28,9 +31,11 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a',
         },
-        
+
         // Full Secondary Scale
         secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
           50: '#fff7ed',
           100: '#ffedd5',
           200: '#fed7aa',
@@ -42,7 +47,7 @@ export default {
           800: '#9a3412',
           900: '#7c2d12',
         },
-        
+
         // Semantic Colors
         success: {
           light: '#d1fae5',
@@ -65,14 +70,20 @@ export default {
           dark: '#2563eb',
         },
       },
-      
+
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+
       // Gradient utilities
       backgroundImage: {
         'gradient-primary': 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
         'gradient-secondary': 'linear-gradient(135deg, #fb923c 0%, #f97316 100%)',
         'gradient-hero': 'linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%)',
       },
-      
+
       // Custom shadows
       boxShadow: {
         'primary': '0 10px 40px -10px rgba(37, 99, 235, 0.3)',
@@ -81,5 +92,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;

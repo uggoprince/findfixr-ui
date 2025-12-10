@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import { ApolloProvider } from "@/providers/ApolloProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "FindFixr - Find Local Technicians",
@@ -9,11 +11,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.Node;
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ApolloProvider>
+          {children}
+          <Toaster />
+        </ApolloProvider>
+      </body>
     </html>
   );
 }
