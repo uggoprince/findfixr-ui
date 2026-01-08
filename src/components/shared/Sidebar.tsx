@@ -1,7 +1,10 @@
 'use client';
 
-import { Home, Search, Heart, Calendar, MessageCircle, Settings, Wrench, X } from 'lucide-react';
+import { Home, Search, Heart, Calendar, MessageCircle, Settings, Wrench, X, LogOut } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
+import { ROUTES } from '@/constants/constants';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -18,6 +21,15 @@ const navigationItems = [
 ];
 
 export function Sidebar({ isOpen, onClose }: Readonly<SidebarProps>) {
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    onClose();
+    router.push(ROUTES.LOGIN);
+  };
+
   return (
     <>
       {/* Overlay */}
@@ -32,11 +44,11 @@ export function Sidebar({ isOpen, onClose }: Readonly<SidebarProps>) {
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed top-0 left-0 w-80 h-screen bg-card shadow-2xl z-50 transition-transform duration-400 ease-in-out',
+          'fixed top-0 left-0 w-80 h-screen bg-card shadow-2xl z-50 transition-transform duration-400 ease-in-out flex flex-col',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        <div className="p-6">
+        <div className="p-6 flex-1 flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between mb-10">
             <div className="flex items-center gap-3">
@@ -54,7 +66,7 @@ export function Sidebar({ isOpen, onClose }: Readonly<SidebarProps>) {
           </div>
 
           {/* Navigation */}
-          <nav className="space-y-2">
+          <nav className="space-y-2 flex-1">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -74,6 +86,17 @@ export function Sidebar({ isOpen, onClose }: Readonly<SidebarProps>) {
               );
             })}
           </nav>
+
+          {/* Logout Button */}
+          <div className="pt-4 border-t border-border mt-auto">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-3 px-4 py-3.5 rounded-xl font-medium transition-all w-full text-destructive hover:bg-destructive/10"
+            >
+              <LogOut className="w-5 h-5" />
+              <span>Log out</span>
+            </button>
+          </div>
         </div>
       </aside>
     </>

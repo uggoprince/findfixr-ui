@@ -1,11 +1,7 @@
-'use client';
-
-import { useState } from 'react';
 import {
   Search, MapPin, Star, CheckCircle, ArrowRight,
   Zap, Droplet, Car, Home
 } from 'lucide-react';
-import { Header } from '@/components/shared/Header';
 
 const categories = [
   { id: 'electrician', icon: Zap, name: 'Electrician', count: 120 },
@@ -44,14 +40,9 @@ const technicians = [
   },
 ];
 
-export default function LandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+export function LandingPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* ========== HEADER ========== */}
-      <Header onMenuClick={() => setMobileMenuOpen(true)} isAuthenticated={false} />
-
+    <>
       {/* ========== HERO SECTION ========== */}
       <section className="py-20 bg-linear-to-b from-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -98,7 +89,9 @@ export default function LandingPage() {
 
             {/* Browse Categories */}
             <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-6">Browse Categories</h3>
+              <h3 className="text-lg font-semibold text-gray-700 mb-6">
+                Browse Categories
+              </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                 {categories.map((category) => {
                   const Icon = category.icon;
@@ -110,8 +103,12 @@ export default function LandingPage() {
                       <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                         <Icon className="w-8 h-8" />
                       </div>
-                      <h4 className="font-bold text-gray-900 mb-1">{category.name}</h4>
-                      <p className="text-sm text-gray-500">{category.count}+ available</p>
+                      <h4 className="font-bold text-gray-900 mb-1">
+                        {category.name}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {category.count}+ available
+                      </p>
                     </button>
                   );
                 })}
@@ -125,8 +122,12 @@ export default function LandingPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600">Get help in three simple steps</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600">
+              Get help in three simple steps
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -141,7 +142,10 @@ export default function LandingPage() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Search</h3>
-              <p className="text-gray-600">Find verified technicians in your area with real-time availability</p>
+              <p className="text-gray-600">
+                Find verified technicians in your area with real-time
+                availability
+              </p>
             </div>
 
             {/* Arrow */}
@@ -160,7 +164,9 @@ export default function LandingPage() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Book</h3>
-              <p className="text-gray-600">Compare reviews and prices. Book instantly or schedule for later</p>
+              <p className="text-gray-600">
+                Compare reviews and prices. Book instantly or schedule for later
+              </p>
             </div>
 
             {/* Arrow */}
@@ -179,7 +185,9 @@ export default function LandingPage() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3">Done</h3>
-              <p className="text-gray-600">Get the job done right. Leave a review and rate your experience</p>
+              <p className="text-gray-600">
+                Get the job done right. Leave a review and rate your experience
+              </p>
             </div>
           </div>
         </div>
@@ -189,8 +197,12 @@ export default function LandingPage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Technicians</h2>
-            <p className="text-xl text-gray-600">Meet our top-rated professionals</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Featured Technicians
+            </h2>
+            <p className="text-xl text-gray-600">
+              Meet our top-rated professionals
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -210,12 +222,18 @@ export default function LandingPage() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-lg text-gray-900">{tech.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{tech.profession}</p>
+                    <h3 className="font-bold text-lg text-gray-900">
+                      {tech.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {tech.profession}
+                    </p>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       <span className="font-bold text-sm">{tech.rating}</span>
-                      <span className="text-xs text-gray-500">({tech.reviews})</span>
+                      <span className="text-xs text-gray-500">
+                        ({tech.reviews})
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -245,12 +263,18 @@ export default function LandingPage() {
             <p className="text-gray-600 text-lg mb-6">Trusted by</p>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
               <div className="text-center">
-                <div className="text-5xl font-bold text-blue-600 mb-2">10,000+</div>
+                <div className="text-5xl font-bold text-blue-600 mb-2">
+                  10,000+
+                </div>
                 <div className="text-gray-600 font-medium">Happy Customers</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-blue-600 mb-2">500+</div>
-                <div className="text-gray-600 font-medium">Verified Technicians</div>
+                <div className="text-5xl font-bold text-blue-600 mb-2">
+                  500+
+                </div>
+                <div className="text-gray-600 font-medium">
+                  Verified Technicians
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-5xl font-bold text-blue-600 mb-2">4.9</div>
@@ -281,62 +305,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* ========== FOOTER ========== */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-600 to-blue-700 flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">F</span>
-                </div>
-                <h3 className="text-xl font-bold">FindFixr</h3>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Find trusted technicians near you, instantly.
-              </p>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="font-bold mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Electrician</a></li>
-                <li><a href="#" className="hover:text-white transition">Plumber</a></li>
-                <li><a href="#" className="hover:text-white transition">Auto Repair</a></li>
-                <li><a href="#" className="hover:text-white transition">Home Services</a></li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">About Us</a></li>
-                <li><a href="#" className="hover:text-white transition">How It Works</a></li>
-                <li><a href="#" className="hover:text-white transition">Become a Technician</a></li>
-                <li><a href="#" className="hover:text-white transition">Contact</a></li>
-              </ul>
-            </div>
-
-            {/* Legal */}
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-                <li><a href="#" className="hover:text-white transition">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm">
-            <p>© 2025 FindFixr. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
-}
+};

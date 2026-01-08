@@ -28,8 +28,8 @@ export interface User {
   lastName: string;
   middleName?: string;
   phone?: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface LoginMutationData {
@@ -41,4 +41,24 @@ export interface LoginMutationVariables {
     email: string;
     password: string;
   };
+}
+
+export interface RegisterMutationData {
+  register: User;
+}
+
+export interface RegisterMutationVariables {
+  input: RegisterInput;
+}
+
+export interface RefreshTokenResponse {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  accessToken: string;
+}
+
+export interface RefreshTokenMutationData {
+  refreshToken: RefreshTokenResponse;
 }
