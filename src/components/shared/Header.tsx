@@ -1,10 +1,21 @@
 'use client';
 
-import { Menu, Search, Bell, Wrench, ArrowLeft } from 'lucide-react';
+import { Menu, Search, Bell, Wrench, ArrowLeft, LogOut, User, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { APP_NAME } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
+import { ROUTES } from '@/constants/constants';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -20,9 +31,15 @@ export function Header({
   userName = 'User',
   userAvatar,
   notificationCount = 0,
-  isAuthenticated = false,
   showBackToHome = false,
 }: Readonly<HeaderProps>) {
+  const { isAuthenticated, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logout();
+    router.push(ROUTES.LOGIN);
+  };
   return (
     <header className="sticky w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,13 +64,13 @@ export function Header({
           {/* Right Section */}
           <div className="flex items-center gap-3">
             {showBackToHome && (
-              <a
+              <Link
                 href="/"
                 className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition font-medium"
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="hidden sm:inline">Back to Home</span>
-              </a>
+              </Link>
             )}
             {isAuthenticated ? (
               <>
@@ -68,12 +85,44 @@ export function Header({
                     </span>
                   )}
                 </button>
-                <button className="flex items-center gap-2 p-1 hover:bg-muted rounded-xl transition-all">
-                  <Avatar className="w-9 h-9 ring-2 ring-white shadow-md">
-                    <AvatarImage src={userAvatar} alt={userName} />
-                    <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                </button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-2 p-1 hover:bg-muted rounded-xl transition-all">
+                      <Avatar className="w-9 h-9 ring-2 ring-white shadow-md">
+                        <AvatarImage src={userAvatar} alt={userName} />
+                        <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
+                      </Avatar>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>
+                      <div className="flex flex-col space-y-1">
+                        <p className="text-sm font-medium leading-none">{userName}</p>
+                        <p className="text-xs leading-none text-muted-foreground">
+                          Manage your account
+                        </p>
+                      </div>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile" className="cursor-pointer">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Profile</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/settings" className="cursor-pointer">
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>Settings</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </>
             ) : (
               <>

@@ -1,14 +1,20 @@
 'use client';
 
-import { useState } from 'react';
-import { Zap, Droplet, Car, Home as HomeIcon, MapPin, ArrowRight, Maximize2 } from 'lucide-react';
+import {
+  Zap,
+  Droplet,
+  Car,
+  Home as HomeIcon,
+  MapPin,
+  ArrowRight,
+  Maximize2,
+} from 'lucide-react';
 import { ServiceCard } from '@/components/dashboard/ServiceCard';
 import { TechnicianCard } from '@/components/technician/TechnicianCard';
 import { FavoriteCard } from '@/components/dashboard/FavoriteCard';
 import { Badge } from '@/components/ui/badge';
-import { Sidebar } from '@/components/shared/Sidebar';
 import { BottomNavigation } from '@/components/shared/BottomNavigation';
-import { Header } from '@/components/shared/Header';
+import { BaseLayout } from '@/components/layout/BaseLayout';
 
 const services = [
   { icon: Zap, title: 'Electrician' },
@@ -101,18 +107,8 @@ const nearbyTechnicians = [
 ];
 
 export default function Home() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   return (
-    <div className="min-h-screen w-full">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <Header
-        onMenuClick={() => setSidebarOpen(true)}
-        userName="Alex"
-        userAvatar="https://i.pravatar.cc/150?img=12"
-        notificationCount={3}
-      />
-
+    <BaseLayout>
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* Welcome Section */}
         <div className="mb-8">
@@ -163,7 +159,9 @@ export default function Home() {
         {/* Your Favorites */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-foreground">Your Favorites</h3>
+            <h3 className="text-2xl font-bold text-foreground">
+              Your Favorites
+            </h3>
             <a
               href="#"
               className="flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
@@ -203,7 +201,9 @@ export default function Home() {
         {/* Recent Bookings */}
         <div className="mb-12">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-foreground">Recent Bookings</h3>
+            <h3 className="text-2xl font-bold text-foreground">
+              Recent Bookings
+            </h3>
             <a
               href="#"
               className="flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
@@ -221,7 +221,9 @@ export default function Home() {
                 className="w-20 h-20 rounded-2xl shadow-md"
               />
               <div className="flex-1">
-                <h4 className="font-bold text-base mb-2">Mike Ross - Auto Repair</h4>
+                <h4 className="font-bold text-base mb-2">
+                  Mike Ross - Auto Repair
+                </h4>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
                   <span className="flex items-center gap-1.5 text-success font-medium">
                     ✓ Completed
@@ -230,7 +232,9 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
+                    <span key={i} className="text-yellow-400">
+                      ★
+                    </span>
                   ))}
                 </div>
               </div>
@@ -249,6 +253,6 @@ export default function Home() {
 
       {/* Mobile Bottom Navigation */}
       <BottomNavigation />
-    </div>
+    </BaseLayout>
   );
 }
