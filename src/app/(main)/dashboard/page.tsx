@@ -15,6 +15,8 @@ import { FavoriteCard } from '@/components/dashboard/FavoriteCard';
 import { Badge } from '@/components/ui/badge';
 import { BottomNavigation } from '@/components/shared/BottomNavigation';
 import { BaseLayout } from '@/components/layout/BaseLayout';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const services = [
   { icon: Zap, title: 'Electrician' },
@@ -135,7 +137,7 @@ export default function Home() {
         {/* Live Map View */}
         <div className="mb-12">
           <div className="bg-card border border-border rounded-3xl overflow-hidden shadow-sm h-[350px] relative">
-            <img
+            <Image
               src="https://api.mapbox.com/styles/v1/mapbox/light-v11/static/-122.4194,37.7749,12,0/1200x350@2x?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw"
               alt="Map"
               className="w-full h-full object-cover"
@@ -204,18 +206,18 @@ export default function Home() {
             <h3 className="text-2xl font-bold text-foreground">
               Recent Bookings
             </h3>
-            <a
+            <Link
               href="#"
               className="flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
             >
               View History
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
 
           <div className="bg-card border border-border rounded-3xl p-6 shadow-sm">
             <div className="flex items-center gap-5">
-              <img
+              <Image
                 src="https://i.pravatar.cc/150?img=68"
                 alt="Mike Ross"
                 className="w-20 h-20 rounded-2xl shadow-md"
@@ -231,8 +233,8 @@ export default function Home() {
                   <span>Jan 15, 2025</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">
+                  {[0, 1, 2, 3, 4].map((star) => (
+                    <span key={`star-${star}`} className="text-yellow-400">
                       ★
                     </span>
                   ))}
