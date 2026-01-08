@@ -6,10 +6,10 @@ import { LandingPage } from '@/components/pages/LandingPage';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function Home() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
   return (
     <BaseLayout className="min-h-screen bg-white">
-      {!isAuthenticated && <LandingPage />}
+      {!isAuthenticated && !isLoading && <LandingPage />}
       {isAuthenticated && <AuthenticatedHomePage />}
     </BaseLayout>
   );

@@ -48,19 +48,10 @@ export function ProtectedRoute({
     );
   }
 
-  // If it's a public path, render immediately
-  if (isPublicPath && !isLoading) {
+  // If it's a public path, render children
+  if (isPublicPath) {
     return <>{children}</>;
   }
-
-  // Show loading state while checking authentication
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex items-center justify-center min-h-screen">
-  //       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-  //     </div>
-  //   );
-  // }
 
   // If authenticated and on auth page, don't render (redirect will happen)
   if (isAuthenticated && isAuthPath) {
